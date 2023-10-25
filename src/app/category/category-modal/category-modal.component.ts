@@ -2,24 +2,26 @@ import { Component } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { ActionSheetService } from '../../shared/service/action-sheet.service';
 import { filter, from } from 'rxjs';
-import { FormBuilder, FormGroup } from '@angular/forms'; // Import für FormGroup hinzufügen
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { CategoryService } from 'Pfad/zur/CategoyService'; // Hier den tatsächlichen Pfad zu CategoryService einfügen
+import { ToastService } from 'Pfad/zur/ToastService'; // Hier den tatsächlichen Pfad zu ToastService einfügen
 
 @Component({
   selector: 'app-category-modal',
   templateUrl: './category-modal.component.html',
 })
 export class CategoryModalComponent {
-  // Fügen Sie das categoryForm und submitting hinzu
   readonly categoryForm: FormGroup;
   submitting = false;
 
   constructor(
     private readonly actionSheetService: ActionSheetService,
+    private readonly categoryService: CategoryService, // CategoryService hinzufügen
+    private readonly formBuilder: FormBuilder,
     private readonly modalCtrl: ModalController,
-    private fb: FormBuilder // Fügen Sie FormBuilder für die Verwendung von FormGroup hinzu
+    private readonly toastService: ToastService // ToastService hinzufügen
   ) {
-    // Initialisieren Sie das categoryForm im Konstruktor
-    this.categoryForm = this.fb.group({
+    this.categoryForm = this.formBuilder.group({
       // Hier können Sie die Formularfelder und Validierungen hinzufügen
       // Beispiel:
       // categoryName: ['', Validators.required],
